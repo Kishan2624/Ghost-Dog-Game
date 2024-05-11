@@ -1,1 +1,35 @@
-const canvas1 = document.querySelector("#canvas1")
+import { Player } from "./class/player.js";
+
+window.addEventListener("load", function (){
+    const canvas = document.querySelector("#canvas1")
+    const ctx = canvas.getContext("2d");
+    canvas.width = 500;
+    canvas.height = 500;
+
+    class Game{
+        constructor({width,height}){
+            this.width = width;
+            this.height = height;
+            this.player = new Player(this)
+        }
+
+        update(){
+
+        }
+
+        draw(context){
+            this.player.draw(context)
+        }
+    }
+
+    const game = new Game({width:canvas.width,height:canvas.height})
+    console.log(game)
+
+    function animate(){
+        game.draw(ctx);
+        window.requestAnimationFrame(animate);
+    }
+
+    animate()
+})
+
